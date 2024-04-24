@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
 import axios from 'axios';
 import MapView, { Marker } from 'react-native-maps'; 
+import { API_KEY } from '@env';
 
 function WeatherScreen({ route }) {
   const { city } = route.params;
   const [weather, setWeather] = useState('');
   const [coords, setCoords] = useState(null);
   const [loading, setLoading] = useState(true);
-  const apiKey = 'c1e989049c93497c423fef3bd9c3ff0e';
 
   useEffect(() => {
     const fetchWeather = async () => {
       console.log(`Fetching weather for: ${city}`);
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
       try {
         const response = await axios.get(url);
